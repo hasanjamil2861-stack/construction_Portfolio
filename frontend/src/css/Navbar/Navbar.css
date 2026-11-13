@@ -1,0 +1,172 @@
+/* fixed white bar at the top */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.06);
+  z-index: 1000;
+}
+
+/* logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 800;
+  color: #1c2b3a;
+}
+
+.logo-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background: #fdefe7;
+  color: #e8692a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+
+/* links */
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  
+  
+}
+
+.nav-links a,
+.nav-links span {
+  position: relative;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1c2b3a;
+  transition: color 0.3s;
+  text-transform: capitalize;
+}
+
+.nav-links span {
+  cursor: default;
+}
+
+.nav-links span i {
+  font-size: 11px;
+  margin-left: 3px;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #e8692a;
+}
+
+/* orange text on hover and on the active link */
+.nav-links a:hover,
+.nav-links span:hover,
+.nav-links a.active {
+  color: #e8692a;
+}
+
+/* orange line under the link (hidden by default) */
+.nav-links a::after,
+.nav-links span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  width: 100%;
+  height: 2px;
+  background: #e8692a;
+  transform: scaleX(0);           /* width 0 = hidden */
+  transition: transform 0.4s ease;
+}
+
+/* line grows from the center */
+.nav-links a:hover::after,
+.nav-links span:hover::after,
+.nav-links a.active::after {
+  transform: scaleX(1.2);
+}
+
+/* phone + button */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav-phone {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #1c2b3a;
+}
+
+.nav-phone i {
+  color: #e8692a;
+  font-size: 16px;
+}
+
+.nav-btn {
+  background: #e8692a;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 11px 24px;
+  border-radius: 30px;
+}
+
+/* hidden on desktop */
+.menu-toggle {
+  display: none;
+  font-size: 28px;
+  color: #1c2b3a;
+}
+
+/* ===== tablet & mobile ===== */
+@media (max-width: 1100px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  /* links become a dropdown under the navbar */
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+    padding: 20px;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.06);
+  }
+
+  .nav-links.open {
+    display: flex;
+  }
+
+    .nav-links a::after,
+  .nav-links span::after {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-phone,
+  .nav-btn {
+    display: none;
+  }
+}

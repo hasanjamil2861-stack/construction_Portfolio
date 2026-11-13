@@ -1,0 +1,130 @@
+
+/* remove default browser spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* smooth scroll when clicking navbar links */
+html {
+  scroll-behavior: smooth;
+}
+
+/* main font and text color for the whole site */
+body {
+  font-family: "Nunito", sans-serif;
+  color: #6b7280;
+  background: #ffffff;
+  line-height: 1.6;
+}
+
+/* all titles */
+h1, h2, h3, h4, h5, h6 {
+  color: #1c2b3a;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* links without underline */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* lists without bullets */
+ul {
+  list-style: none;
+}
+
+/* images never overflow their box */
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* reset button style */
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* centers the content with a max width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* space above and below every section */
+section {
+  padding: 90px 0;
+  scroll-margin-top: 70px; /* navbar height, so it doesn't cover the title */
+}
+
+/* ===== Buttons ===== */
+
+/* shared button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* orange button */
+.btn-primary {
+  background: #e8692a;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #cf5a1e;
+}
+
+/* ===== Section titles ===== */
+
+/* centered title (Our Services, Our Projects) */
+.section-title {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: 34px;
+}
+
+/* small orange line under the title */
+.section-title h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #e8692a;
+  margin: 16px auto 0;
+}
+
+/* text under the title */
+.section-title p {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+/* small orange label (ABOUT CONSTRUCTIFY, OUR TRACK RECORD) */
+.subtitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #e8692a;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}

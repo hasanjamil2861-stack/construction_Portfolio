@@ -1,0 +1,262 @@
+/* ===== filter buttons ===== */
+.projects-filter {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+
+.projects-filter button {
+  padding: 9px 22px;
+  border: 1px solid #e5e5e5;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c2b3a;
+  transition: all 0.3s ease;
+}
+
+.projects-filter button:hover {
+  background: #fdefe7;
+  border-color: #fdefe7;
+}
+
+.projects-filter button.active {
+  background: #e8692a;
+  border-color: #e8692a;
+  color: #ffffff;
+}
+
+/* ===== projects grid =====
+   cards are placed with left/top so they can slide to their new place */
+.projects-grid {
+  position: relative;
+  overflow: hidden; /* hidden cards outside the grid don't leave empty space */
+  transition: height 0.5s ease;
+}
+
+.project-card {
+  position: absolute;
+  width: calc((100% - (var(--cols) - 1) * 22px) / var(--cols));
+  height: 280px;
+  left: calc(var(--col) * ((100% - (var(--cols) - 1) * 22px) / var(--cols) + 22px));
+  top: calc(var(--row) * (280px + 22px));
+  border-radius: 8px;
+  overflow: hidden;
+  transition: left 0.5s ease, top 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* hidden by the filter: shrinks in its place */
+.project-card.hidden {
+  transform: scale(0.001);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.project-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* dark gradient + text at the bottom */
+.project-info {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 22px;
+  padding-right: 70px; /* space for the hover buttons */
+  background: linear-gradient(to top, rgba(22, 38, 58, 0.9) 5%, transparent 65%);
+}
+
+/* category label */
+.project-category {
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: background 0.3s ease;
+}
+
+.project-info h3 {
+  color: #ffffff;
+  font-size: 20px;
+  margin: 10px 0 6px;
+}
+
+.project-info p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* category becomes orange on hover */
+.project-card:hover .project-category {
+  background: #e8692a;
+}
+
+/* ===== hover buttons ===== */
+.project-actions {
+  position: absolute;
+  right: 18px;
+  bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  opacity: 0;
+  transform: translateX(15px);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-actions {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.project-actions button,
+.project-actions span {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #e8692a;
+  color: #ffffff;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ===== fullscreen lightbox ===== */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 2000; /* above the navbar */
+  background: rgba(0, 0, 0, 0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+.lightbox.closing {
+  animation: lightboxFadeOut 0.3s ease forwards;
+}
+
+/* image + caption */
+.lightbox-slide {
+  display: flex;
+  flex-direction: column;
+  animation: lightboxZoomIn 0.4s ease;
+}
+
+.lightbox.closing .lightbox-slide {
+  animation: lightboxZoomOut 0.3s ease forwards;
+}
+
+/* same size for every image: 3:2 box, as big as the screen allows */
+.lightbox-slide img {
+  width: min(90vw, calc((100vh - 90px) * 1.5));
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
+/* white bar under the image */
+.lightbox-caption {
+  background: #ffffff;
+  color: #1c2b3a;
+  font-size: 14px;
+  padding: 14px 20px;
+}
+
+/* close + arrows */
+.lightbox-btn {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #ffffff;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.lightbox-btn:hover {
+  background: rgba(0, 0, 0, 0.75);
+}
+
+.lightbox-close {
+  top: 15px;
+  right: 15px;
+  font-size: 18px;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox-prev {
+  left: 15px;
+}
+
+.lightbox-next {
+  right: 15px;
+}
+
+/* animations */
+@keyframes lightboxFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes lightboxFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes lightboxZoomIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes lightboxZoomOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.5); }
+}
+
+/* ===== mobile ===== */
+@media (max-width: 576px) {
+  .projects-filter {
+    gap: 8px;
+  }
+
+  .projects-filter button {
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  /* hover doesn't exist on touch screens, so keep the buttons visible */
+  .project-actions {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .lightbox-btn {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+}

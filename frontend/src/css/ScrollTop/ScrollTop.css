@@ -1,0 +1,28 @@
+/* orange square button, bottom right */
+.scroll-top {
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  z-index: 999;
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background: #e8692a;
+  color: #ffffff;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0; /* hidden at the top of the page */
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.scroll-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.scroll-top:hover {
+  background: #cf5a1e;
+}
